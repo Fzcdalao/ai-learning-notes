@@ -1,0 +1,70 @@
+#在您的新LangGraph应用的根目录下，以编辑模式安装依赖项，以便服务器使用您的本地更改。
+#在LangGraph 中, pyproject.toml 代传统的 setup.py 和 requirements.txt.可能包含以下扩展配置:
+#依赖分组:如[project.optional-dependencies]定义 dev (开发工具)和 test (测试框架)依赖。
+#动态版本控制:通过 requires-python=">=3.9”指定 Python版本兼容性。
+#CI/CD集成:通过 [tool.*] 配置与 GitHub Actions 或 GitLab CI 的交互
+[project]
+name = "agent"
+version = "0.0.1"
+description = "Starter template for making a new agent LangGraph."
+authors = [
+    { name = "William Fu-Hinthorn", email = "13333726+hinthornw@users.noreply.github.com" },
+]
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "langgraph>=1.2.14",
+    "python-dotenv>=1.0.1",
+]
+
+#依赖分组
+[project.optional-dependencies]
+dev = ["mypy>=1.11.1", "ruff>=0.6.1"]
+
+[build-system]
+requires = ["setuptools>=84.1.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["langgraph.templates.agent", "agent"]
+[tool.setuptools.package-dir]
+"langgraph.templates.agent" = "src/agent"
+"agent" = "src/agent"
+
+
+[tool.setuptools.package-data]
+"*" = ["py.typed"]
+
+[tool.ruff]
+lint.select = [
+    "E",    # pycodestyle
+    "F",    # pyflakes
+    "I",    # isort
+    "D",    # pydocstyle
+    "D401", # First line should be in imperative mood
+    "T201",
+    "UP",
+]
+lint.ignore = [
+    "UP006",
+    "UP007",
+    # We actually do want to import from typing_extensions
+    "UP035",
+    # Relax the convention by _not_ requiring documentation for every function parameter.
+    "D417",
+    "E501",
+]
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D", "UP"]
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[dependency-groups]
+dev = [
+    "anyio>=4.14.2",
+    "langgraph-cli[inmem]>=0.4.14",
+    "mypy>=1.13.0",
+    "pytest>=9.0.3",
+    "ruff>=0.8.2",
+]
