@@ -3,11 +3,10 @@ from langchain.agents import create_agent
 
 # 本地私有化部署的大模型
 llm = ChatOpenAI(
-    model='qwen3-8b',
+    model='deepseek-flash',
     temperature=0.8,
-    api_key='xx',
-    base_url="http://localhost:6006/v1",
-    extra_body={'chat_template_kwargs': {'enable_thinking': False}},
+    api_key='sk-cdad2cc634614c33a52cf7b90e40a9e5',
+    base_url="https://api.deepseek.com",
 )
 
 def get_weather(city: str) -> str:
