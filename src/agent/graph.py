@@ -1,11 +1,16 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
 from langchain_openai import ChatOpenAI
 from langchain.agents import create_agent
+from pydantic import SecretStr
+
 
 # 本地私有化部署的大模型
 llm = ChatOpenAI(
     model='deepseek-flash',
     temperature=0.8,
-    api_key='sk-cdad2cc634614c33a52cf7b90e40a9e5',
+    api_key=SecretStr(os.environ['DASHSCOPE_API_KEY']),
     base_url="https://api.deepseek.com",
 )
 

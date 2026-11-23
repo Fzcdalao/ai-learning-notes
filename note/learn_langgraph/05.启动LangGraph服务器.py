@@ -9,6 +9,10 @@
 #强制 Python 用 UTF-8 模式：$env:PYTHONUTF8 = "1"
 #把它设成用户级环境变量，以后所有终端都生效：setx PYTHONUTF8 1
 #
+#
+#
+#保护API： 安装读取工具 python -m pip install python-dotenv
+#
 """
 启动后
 - 🚀 API: http://127.0.0.1:2024   ： 这个是给前端提供的对外开放的API接口
