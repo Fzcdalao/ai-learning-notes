@@ -11,12 +11,32 @@ return_direct    boolean                  仅与代理相关。当为True时，�
 
 工具的创建：
 LangChain 支持从以下对象创建工具
-1.函数；
-2.LangChain Runnables；
+1.函数；demo1-5
+2.LangChain Runnables；所有的langchain Runnable对象都可以直接变成工具使用
+    runnable_tool = chain.as_tool(
+        name=
+        description=
+        args_schema=
+    )
+   demo6
 3.通过从 BaseTool 子类化 -- 这是最灵活的方法，它提供了最大的控制程度，但代价是需要付出更多的努力和编写更多的代码。
 
+Tool工具在部署在服务器上的时候需要按照以下目录结构：
+my-app/
+    my_agent # all project code lies within here
+        utils # utilities for your graph
+            __init__.py
+            tools.py # tools for your graph
+            nodes.py # node functions for you graph
+            state.py # state definition of your graph
+        __init__.py
+    agent.py # code for constructing your graph.env # environment variables
+    langgraph.json # configuration file for LangGraph
+    pyproject.toml # dependencies for your project
 
-
+Stream message chunks:
+LangGraph 的流式模式之一。`messages` 模式下，大模型每生成一小段文字（一个 token 或几个 token）就推一个 **message chunk**（消息片段）给你，
+而不是等整条回答生成完再发。这就是聊天软件里 "字一个个往外蹦" 的效果来源。
 
 
 """
