@@ -11,9 +11,10 @@ async def main():
         input={
         "messages": [{
             "role": "human",
-            "content": "今天西安天气如何?",
+            "content": "给当前用户一个祝福语",
             }],
         },
+        config={"configurable": {"user_name": "凤飞飞"}}
     ):
         print(f"Receiving new event of type: {chunk.event}...")
         print(chunk.data)

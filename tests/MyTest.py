@@ -8,10 +8,11 @@ for chunk in client.runs.stream(
     input={
         "messages": [{
             "role": "human",
-            "content": "今天西安天气如何?",
+            "content": "告诉我当前用户的年龄",
         }],
     },
-    stream_mode="messages-tuple", #输出的每个消息 包含了chunk的内容，也包含了chunk的元数据，直接加messages就是直接返回chunk的内容
+    stream_mode="messages", #输出的每个消息 包含了chunk的内容，也包含了chunk的元数据，直接加messages就是直接返回chunk的内容
+    config={"configurable":{"user_name":"user_123"}}
 ):
     print(f"Receiving new event of type: {chunk.event}...")
     print(chunk.data)
