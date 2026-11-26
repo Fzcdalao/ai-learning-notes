@@ -20,6 +20,10 @@ dependencies = [
     "langgraph==1.2.24",
     "python-dotenv==1.2.4",
     "pydantic==2.14.4",
+    "fastmcp>=2.14.7,<3",
+    "langchain-mcp-adapters>=0.3.2,<0.4",
+    # 上限由 langchain-mcp-adapters 决定：它要求 mcp<2，升到 2.x 会 ImportError
+    "mcp>=1.24,<2.0",
 ]
 
 #依赖分组
