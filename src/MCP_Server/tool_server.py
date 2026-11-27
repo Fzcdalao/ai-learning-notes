@@ -1,5 +1,6 @@
 from fastmcp import FastMCP
 
+
 server = FastMCP(name='MyMCP',instructions='python代码实现的MCP服务器')
 #工具
 @server.tool(name='say_hello')

@@ -1,8 +1,9 @@
 # 放在 src/agent/my_llm.py（和 graph.py 同目录）
 import os
+from pathlib import Path
 from dotenv import load_dotenv
-
-load_dotenv()  # 先加载 .env，再导入 langchain
+# 显式指定 .env 路径：默认 load_dotenv() 依赖当前工作目录，cwd 不在项目根时读不到
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 from langchain_openai import ChatOpenAI
 from pydantic import SecretStr
